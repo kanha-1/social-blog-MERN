@@ -10,14 +10,12 @@ import "./App.css";
 import Welcome from "./Components/Welcome/Welcome";
 import Login from "./Components/User/Login";
 import Register from "./Components/User/Register";
-import Nav from "./Components/Dashboard/Nav";
 import decode from "jwt-decode";
 import ResetPassword from "./Components/User/ResetPassword";
 import Error from "./Components/User/Error";
 import profile from "./Components/Dashboard/Profile";
 import Feeds from "./Components/Dashboard/Feeds";
 import CreatePost from "./Components/Dashboard/CreatePost";
-// import NavBar from "./Components/Navbar";
 import UserProfile from "./Components/Dashboard/UserProfile"
 import { reducer, initialState } from "./reducers/userReducer";
 
