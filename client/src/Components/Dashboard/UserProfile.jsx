@@ -13,7 +13,7 @@ function Userprofile() {
 		state ? !state.following?.includes(userid) : true,
 	);
 	useEffect(() => {
-		fetch(`https://social-dev-be.herokuapp.com/user/${userid}`, {
+		fetch(`/user/${userid}`, {
 			headers: {
 				Authorization: localStorage.getItem("token"),
 			},
@@ -28,7 +28,7 @@ function Userprofile() {
 	}, [userid]);
 
 	const follow = () => {
-		fetch("https://social-dev-be.herokuapp.com/follow", {
+		fetch("/follow", {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",
@@ -61,7 +61,7 @@ function Userprofile() {
 
 	// Unfollow
 	const unfollow = () => {
-		fetch("https://social-dev-be.herokuapp.com/unfollow", {
+		fetch("/unfollow", {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",

@@ -30,11 +30,6 @@ app.use(resetpassword)
 app.use(postRoute)
 app.use(usersRoute)
 
-//Routing
-// app.get("/", (req, res) => {
-// 	res.send("<h1>Hello we are in Main route</h1>");
-// });
-
 // heroku deploy
 if(process.env.NODE_ENV == "production"){
 	app.use(express.static("client/build"))

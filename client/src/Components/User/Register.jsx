@@ -24,7 +24,7 @@ function Register(props) {
 	};
 	const onSubmit = (e) => {
 		e.preventDefault();
-		Axios.post(`https://social-dev-be.herokuapp.com/register`, {
+		Axios.post(`/register`, {
 			name: values.name,
 			email: values.email,
 			mobile: values.mobile,

@@ -26,7 +26,7 @@ function Login(props) {
 	};
 	const login = (e) => {
 		e.preventDefault();
-		Axios.post("https://social-dev-be.herokuapp.com/login", {
+		Axios.post("/login", {
 			email: values.email,
 			password: values.password,
 		})

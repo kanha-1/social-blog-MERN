@@ -16,7 +16,7 @@ function Profile() {
 	const { state, dispatch } = useContext(UserContext);
 	// console.log(state)
 	useEffect(() => {
-		fetch("https://social-dev-be.herokuapp.com/mypost", {
+		fetch("/mypost", {
 			headers: {
 				Authorization: localStorage.getItem("token"),
 			},
@@ -47,7 +47,7 @@ function Profile() {
 						JSON.stringify({ ...state, pic: data.url }),
 					);
 					dispatch({ type: "UPDATEPIC", payload: data.url });
-					fetch("https://social-dev-be.herokuapp.com/updatepic", {
+					fetch("/updatepic", {
 						method: "put",
 						headers: {
 							"Content-Type": "application/json",

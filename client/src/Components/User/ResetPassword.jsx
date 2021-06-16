@@ -16,7 +16,7 @@ function ResetPassword(props) {
 	};
 	const onSubmit = (e) => {
 		e.preventDefault();
-		Axios.post("https://social-dev-be.herokuapp.com/resetPassword", {
+		Axios.post("/resetPassword", {
 			newpassword: input.newpassword,
 			confirmpassword: input.confirmpassword,
 			email: props.match.params.email,

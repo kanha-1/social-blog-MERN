@@ -25,7 +25,7 @@ function FormDialog() {
 		setInput(e.target.value);
 	};
 	const handleSubmit = () => {
-		Axios.put(`https://social-dev-be.herokuapp.com/forgotPassword`, {
+		Axios.put(`/forgotPassword`, {
 			email: input,
 		})
 			.then((response) => {

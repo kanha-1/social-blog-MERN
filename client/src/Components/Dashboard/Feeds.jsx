@@ -12,7 +12,7 @@ function Feeds() {
 	const { state, dispatch } = useContext(UserContext);
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch("https://social-dev-be.herokuapp.com/allpost", {
+		fetch("/allpost", {
 			headers: {
 				Authorization: localStorage.getItem("token"),
 			},
@@ -25,7 +25,7 @@ function Feeds() {
 
 	// Like function
 	const postLike = (id) => {
-		fetch("https://social-dev-be.herokuapp.com/like", {
+		fetch("/like", {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",
@@ -52,7 +52,7 @@ function Feeds() {
 	};
 	// post Unlike
 	const postunLike = (id) => {
-		fetch("https://social-dev-be.herokuapp.com/unlike", {
+		fetch("/unlike", {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",
@@ -79,7 +79,7 @@ function Feeds() {
 	};
 	// Comment function
 	const makeCOmment = (text, postId,postedBy) => {
-		fetch("https://social-dev-be.herokuapp.com/comment", {
+		fetch("/comment", {
 			method: "put",
 			headers: {
 				"Content-Type": "application/json",
@@ -109,7 +109,7 @@ function Feeds() {
 	};
 	// Delete function
 	const Delete = (postId) => {
-		fetch(`https://social-dev-be.herokuapp.com/deletepost/${postId}`, {
+		fetch(`/deletepost/${postId}`, {
 			method: "delete",
 			headers: {
 				Authorization: localStorage.getItem("token"),

@@ -27,7 +27,7 @@ function CreatePost() {
 				// console.log(data);
 				const url = data.url
 				console.log("this is url", data.url);
-				fetch("https://social-dev-be.herokuapp.com/createpost", {
+				fetch("/createpost", {
 					method: "post",
 					headers: {
 						"Content-Type": "application/json",
