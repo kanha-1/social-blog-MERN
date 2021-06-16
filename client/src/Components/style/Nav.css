@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:ital@1&family=Dancing+Script:wght@500&family=Kaushan+Script&family=Libre+Baskerville:wght@700&family=Pacifico&family=Source+Serif+Pro:ital,wght@0,700;1,400&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+}
+.nav-wrapper {
+	display: flex;
+	background: linear-gradient(135deg,#ff4081,#3f51b5)!important;;
+	animation: gradient 15s ease infinite;
+}
+.brand-logo {
+	font-family: "Playfair Display", serif;
+	margin-left: 5em;
+	font-weight: bolder;
+	font-size: 50px;
+	color: rgb(219, 217, 212);
+}
+.logout:hover {
+	color: red;
+}
+.lnks {
+	margin-left: 500px;
+	padding: 2px;
+}
+.nt {
+	font-size: 30px;
+	font-family: "Dancing Script", cursive;
+	color: rgb(213, 228, 214);
+	font-weight: bolder;
+}
+a:hover {
+	color: rgb(41, 108, 163);
+}
+.parent {
+	max-width: 70%;
+	margin: 0px auto;
+}
+/* profile */
+.img_Div {
+	border: 1px solid rgb(226, 218, 218);
+	overflow: hidden;
+	display: inline-block;
+	width: 160px;
+	height: 160px;
+	border-radius: 80px;
+}
+.img_Div img {
+	width: 160px;
+	height: 160px;
+	border-radius: 80px;
+	transition: transform 3s, filter 1s ease-in-out;
+}
+.img_Div>input {
+    display: none;
+  }
+/* .img_Div:hover {
+	background: rgb(187, 91, 91);
+	opacity: 0.5;
+} */
+.profile {
+	padding: 10px;
+	display: flex;
+	justify-content: space-around;
+	margin: "180px 10px";
+	border-bottom: 1px solid gray;
+}
+.user_Details{
+	margin-top: 25px;
+}
+.up_btn {
+	height: 30px;
+	background-color: rgb(100, 37, 167);
+	color: whitesmoke;
+	border-radius: 20px;
+}
+.up_btn input {
+	contain: "upload";
+	color: #23a6d5;
+	width: 50px;
+}
+
+.friend_Section {
+	display: flex;
+	justify-content: space-between;
+	width: 108%;
+}
+.user_sect {
+	font-family: "Libre Baskerville", serif;
+	color: purple;
+}
+.Name_user {
+	font-family: "Source Serif Pro", serif;
+	color: indigo;
+}
+.Email_user {
+	font-family: "Pacifico", cursive;
+	color: rgb(245, 142, 82);
+}
+/* posts */
+.Posts {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+.items {
+	height: 200px;
+	margin-top: 5%;
+	width: 30%;
+	border-radius: 30px;
+	box-shadow: 0 8px 6px 1px rgb(126, 123, 123);
+}
+/* feed */
+.home-card {
+	max-width: 500px;
+	height: max-content;
+	margin: 25px auto;
+	border-radius: 30px;
+	box-shadow: 0 2px 2px 1px rgb(126, 123, 123);
+	/* background: linear-gradient(-45deg, rgb(187, 157, 221), rgb(168, 218, 207), #9ae6ad, #c3e2c6);
+	animation: gradient 15s ease infinite; */
+}
+.home-card img {
+	max-width: 490px;
+	padding: 15px;
+	border-radius: 50px;
+	transform-origin: 50% 65%;
+	transition: transform 0.5s, filter 0.5s ease-in-out;
+	box-shadow: 0 8px 6px 1px rgb(126, 123, 123);
+	box-shadow: 0 8px 6px 1px rgb(126, 123, 123);
+}
+.home-card img:hover {
+	filter: brightness(100%);
+	transform: scale(1.1);
+}
+.p_body {
+	display: flex;
+	justify-content: space-around;
+	margin-top: 20px;
+}
+/* create post */
+.input-field {
+	/* padding-top: 30px; */
+	margin: 10px auto;
+	max-width: 500px;
+	padding: 30px;
+	text-align: center;
+	border-radius: 10px;
+	box-shadow: 0 8px 6px 1px rgb(126, 123, 123);
+}
+.input-field > input {
+	padding: 10px;
+	margin-bottom: 10px;
+	border: none;
+	border-bottom: 3px solid gray;
+	outline: none;
+}
+.pic_success {
+	margin-left: 450px;
+	color: indigo;
+}
+.input_cmt > input {
+	width: 100%;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid rgb(70, 60, 60);
+	margin-bottom: 40px;
+	font-size: 25px;
+	color: rgb(70, 81, 87);
+	outline: none;
+	border-radius: 10px;
+}
+
+.post_Name {
+	margin-left: 30px;
+	margin-top: 10px;
+	font-family: "Pacifico", cursive;
+	font-size: 30px;
+	/* padding: 10px; */
+}
+.del_ico {
+	margin-left: 280px;
+}
+.like {
+	color: rgb(48, 48, 204);
+}
+.like_count {
+	margin-left: 70px;
+	margin-bottom: 20px;
+}
+.Title {
+	font-family: "Dancing Script", cursive;
+	margin-left: 20px;
+	font-size: 30px;
+	color: rgb(29, 150, 55);
+	font-weight: bold;
+}
+.cmt_name {
+	font-family: "Libre Baskerville", serif;
+	font-weight: bold;
+	margin-left: 20px;
+	font-size: 20px;
+	font-style: italic;
+	color: blueviolet;
+}
+.Comment {
+	font-family: "Kaushan Script", cursive;
+	font-size: 20px;
+	color: darkslategray;
+	overflow: scroll;
+}
+.cmt_box{
+	height: 70px;
+	overflow-y:scroll; 
+    position:relative;
+}
+.loader {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 100px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite; /* Safari */
+	animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+/* Profile */
+.btn_title>input{
+	display: none;
+}

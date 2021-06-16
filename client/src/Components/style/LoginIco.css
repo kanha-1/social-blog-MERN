@@ -1,0 +1,28 @@
+.pLogin{
+    border: hidden;
+}
+.costume{
+    background-color: rgb(87, 87, 212);
+    border: hidden;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    box-shadow: 1px 2px gray;
+}
+
+.alert{
+    color: red;
+    font-weight: bolder;
+}
+.res_pas{
+    display: flex;
+    justify-content: center;
+    margin-top: 15em;
+}
+.pass_msg{
+    display: flex;
+    justify-content: center;
+    margin-top: 3em;
+    color:blueviolet;
+}

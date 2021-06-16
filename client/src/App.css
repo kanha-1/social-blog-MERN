@@ -1,0 +1,110 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background-color:#dbddf7;
+}
+.container{
+    display: flex;
+    margin: 0;
+    border-radius: 20px;
+}
+.blank_page{
+    border-radius: 50px;
+    height: 100vh;
+    width: 50%;
+    background-color: #feffdd;
+    text-align: center;
+}
+.imgt{
+   height: 77vh; 
+   width: 100%;
+  border-radius: 0 0 50px 50px;
+}
+.wlcm_txt{
+    margin-top: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.wlcm_txt p{
+    font-size: medium;
+}
+.inpf{
+    margin: auto;
+    border: none;
+    background-color: #4e84d65c;
+    box-shadow: 10px 10px 5px 0px rgba(184, 179, 192, 0.877);
+    border-radius: 30px;
+    height: 500px;
+    width: 450px;
+}
+.move{
+    margin-top: px;
+}
+.textin{
+    margin-left: 50px;
+    margin-top: 20px;
+    color: #243ebb;
+}
+.emil_inpt{
+   width: 400px;
+   padding: 5px;
+   
+}
+.pswd_inpt {
+    width: 400px;
+    padding: 5px;
+    
+}
+.butn{
+    margin-top: 20px;
+    margin-left: 150px;
+}
+.new_user a{
+    text-decoration: none;
+    color: honeydew;
+}
+.new_user{
+    margin-top: 50px;
+    margin-left: 50px;
+}
+.new_users a{
+    text-decoration: none;
+    color: honeydew;
+}
+.new_users{
+    margin-left: 50px;
+}
+/* input{
+    border-radius: 50px;
+    margin: 10px;
+} */
+.form-signin {
+    
+    max-width: 500px;
+    padding: 15px;
+    margin: auto;
+}
+.form-signin {
+    font-weight: 400;
+}
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
