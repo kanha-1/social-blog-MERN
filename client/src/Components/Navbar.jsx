@@ -94,6 +94,8 @@ export default function Navbar() {
 	const [openClick, setopenClick] = useState(false);
 	const [search, setSearch] = useState("");
 	const [userDeatls, setUserdetails] = useState([]);
+	const currentUser = JSON.parse(localStorage.getItem("user"));
+	const id = currentUser._id;
 	const user = JSON.parse(localStorage.getItem("user"));
 	console.log(search)
 	const fetchUsers = (query) => {

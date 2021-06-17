@@ -7,7 +7,6 @@ import "../style/Nav.css";
 import { UserContext } from "../../App";
 function Feeds() {
 	const user = JSON.parse(localStorage.getItem("user"));
-	const Cname = user.name;
 	const id = user._id;
 	const { state, dispatch } = useContext(UserContext);
 	const [data, setData] = useState([]);
@@ -127,7 +126,7 @@ function Feeds() {
 			<NavBar />
 			<div className="feed">
 				{data.map((item) => {
-					// console.log(item._id)
+					console.log(item._id)
 					return (
 						<div className="card home-card" key={item?._id}>
 							<h5 className="post_Name">
