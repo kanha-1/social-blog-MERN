@@ -8,7 +8,7 @@ const client = new OAuth2Client(process.env.GoogleClientId);
 
 module.exports = {
 	googlelogin: (req, res) => {
-        console.log("Here is the tokenID from req",req.body.tokenId)
+        // console.log("Here is the tokenID from req",req.body.tokenId)
 		const { tokenId } = req.body;
 		// console.log("Here is thetokenid", tokenId);
 		client

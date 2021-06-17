@@ -30,7 +30,7 @@ module.exports = {
 		if (!title || !body || !pic) {
 			return res.status(422).json({ error: "Please add all the fields" });
 		}
-		//    console.log("Line 33 ",req.user)
+
 		const post = new Post({
 			title,
 			body,
@@ -40,7 +40,6 @@ module.exports = {
 		post
 			.save()
 			.then((result) => {
-				// console.log("THis is from line 43", result)
 				res.json({ post: result });
 			})
 			.catch((err) => {
@@ -70,7 +69,6 @@ module.exports = {
 			if (err) {
 				return res.status(422).json({ error: err });
 			} else {
-				
 				res.json(result);
 			}
 		});
@@ -88,7 +86,6 @@ module.exports = {
 			if (err) {
 				return res.status(422).json({ error: err });
 			} else {
-			
 				res.json(result);
 			}
 		});
@@ -97,7 +94,7 @@ module.exports = {
 		const comment = {
 			text: req.body.text,
 			postedBy: req.user,
-			name:req.user.name
+			name: req.user.name,
 		};
 		Post.findByIdAndUpdate(
 			req.body.postId,
@@ -111,7 +108,6 @@ module.exports = {
 			.populate("comment.postedBy", "_id name")
 			.populate("postedBy", "_id name")
 			.exec((err, result) => {
-				// console.log(result)
 				if (err) {
 					return res.status(422).json({ error: err });
 				} else {

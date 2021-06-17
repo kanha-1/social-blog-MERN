@@ -6,15 +6,13 @@ const sendgridTransport = require("nodemailer-sendgrid-transport");
 const transporter = nodemailer.createTransport(
 	sendgridTransport({
 		auth: {
-			api_key:process.env.API_KEY,
-				
+			api_key: process.env.API_KEY,
 		},
 	}),
 );
 module.exports = {
 	forgotPassword: (req, res) => {
 		User.findOne({ email: req.body.email }).then((user) => {
-			console.log(req.body);
 			if (user) {
 				const token = sign(
 					{ email: user.email, id: user._id },
@@ -34,7 +32,6 @@ module.exports = {
                     </div>`,
 					})
 					.then((success) => {
-						console.log(success, "send mail success");
 						res.json({ message: "Mail sent successfully" });
 					})
 					.catch((err) => {

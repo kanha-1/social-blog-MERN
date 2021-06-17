@@ -1,5 +1,5 @@
 const User = require("../model/user");
-const Post = require("../model/post") 
+const Post = require("../model/post");
 module.exports = {
 	getuserByID: (req, res) => {
 		User.findOne({ _id: req.params.id })
@@ -40,7 +40,6 @@ module.exports = {
 				)
 					.select("-password")
 					.then((result) => {
-						// console.log(result)
 						res.json(result);
 					})
 					.catch((err) => {
@@ -95,7 +94,7 @@ module.exports = {
 	SearchUser: (req, res) => {
 		let userPattern = new RegExp("^" + req.body.query);
 		User.find({ email: { $regex: userPattern } })
-			.select("_id email")
+			.select("_id name pic")
 			.then((user) => {
 				res.json({ user });
 			})

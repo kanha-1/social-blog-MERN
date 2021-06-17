@@ -5,7 +5,7 @@ const Posts = require("../controller/post");
 
 router.get("/allpost",middleware.authentication, Posts.Allpost);
 
-router.get("/getsubpost",middleware.authentication, Posts.SubPost);
+router.get("/friendpost",middleware.authentication, Posts.SubPost);
 
 router.post("/createpost",middleware.authentication, Posts.CeatePost);
 

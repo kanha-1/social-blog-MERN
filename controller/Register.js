@@ -5,13 +5,13 @@ const nodemailer = require("nodemailer");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 require("dotenv").config();
 // Send mail after register
-
-const transporter = nodemailer.createTransport(sendgridTransport({
-	
-	auth:{
-		api_key:process.env.API_KEY
-	}
-}));
+const transporter = nodemailer.createTransport(
+	sendgridTransport({
+		auth: {
+			api_key: process.env.API_KEY,
+		},
+	}),
+);
 module.exports = {
 	GetUser: (req, res) => {
 		User.find()
@@ -25,8 +25,8 @@ module.exports = {
 	Register: (req, res) => {
 		//check if email alredy exit
 		User.findOne({ email: req.body.email })
-			.then((sol) => {
-				if (sol) {
+			.then((result) => {
+				if (result) {
 					return res.json({ message: "Email alredy exit" });
 				}
 				// hash the password
@@ -43,7 +43,6 @@ module.exports = {
 						user
 							.save()
 							.then((data) => {
-								// console.log(data)
 								sign(
 									{ email: data.email, user: data._id },
 									process.env.SECRET_KEY,
@@ -57,13 +56,12 @@ module.exports = {
 													$set: { islogin: true },
 												},
 											)
-											.then((data) => {
-												transporter
-													.sendMail({
-														to: "kanhu.sahoo09@gmail.com",
-														from: process.env.G_NAME,
-														subject: "Account register successfully",
-														html: `<div>
+											.then(() => {
+												transporter.sendMail({
+													to: user.email,
+													from: process.env.G_NAME,
+													subject: "Account register successfully",
+													html: `<div>
 															<h1>Welcome to coworks</h1>
 															<h3>Here is your account details</h3>
 															</br>
@@ -73,10 +71,10 @@ module.exports = {
 															<p>Thank you for choosing us!</p>
 														</div>
 													`,
-													})
-												res.json({ token: token, user: data });
+												});
+												res.json({ token: token, user: user });
 											})
-											// console.log(user)
+
 											.catch((err) => {
 												res.json({ message: err });
 											});
@@ -88,7 +86,6 @@ module.exports = {
 							});
 					})
 					.catch((err) => {
-						console.log(process.env.G_NAME);
 						res.json({ message: err });
 					});
 			})
