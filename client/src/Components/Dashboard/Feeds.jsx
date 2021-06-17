@@ -126,7 +126,7 @@ function Feeds() {
 			<NavBar />
 			<div className="feed">
 				{data.map((item) => {
-					console.log(item._id)
+					console.log(item,id)
 					return (
 						<div className="card home-card" key={item?._id}>
 							<h5 className="post_Name">
@@ -173,6 +173,7 @@ function Feeds() {
 								<h6 className="like_count">{item.Likes.length} Likes</h6>
 								<div className="cmt_box">
 									{item.comment.map((record) => {
+										console.log(record)
 										return (
 											<h6 key={record._id}>
 												
@@ -180,8 +181,8 @@ function Feeds() {
 													
 													<Link
 														to={
-															record.name !== record._id
-																? "/profile/" +record.postedBy
+															record.postedBy !== id
+																? "/profile/" + record.postedBy
 																: "/profile"
 														}>
 														{record.name}

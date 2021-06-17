@@ -81,7 +81,7 @@ function Profile() {
 			<NavBar />
 			<div className="parent">
 				<div className="profile">
-					<div class="img_Div">
+					<div className="img_Div">
 						<label htmlFor="file-input">
 							<img
 								className="image_dp"
