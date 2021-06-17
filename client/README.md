@@ -1,4 +1,4 @@
-#Live app https://sociallife.netlify.app
+
 
 
 ## Available Scripts
