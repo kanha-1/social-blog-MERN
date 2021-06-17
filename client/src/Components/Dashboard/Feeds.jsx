@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import NavBar from "../Navbar";
 import { Link } from "react-router-dom";
 import "../style/Nav.css";
@@ -77,7 +77,7 @@ function Feeds() {
 			});
 	};
 	// Comment function
-	const makeCOmment = (text, postId,postedBy) => {
+	const makeCOmment = (text, postId, postedBy) => {
 		fetch("/comment", {
 			method: "put",
 			headers: {
@@ -126,7 +126,6 @@ function Feeds() {
 			<NavBar />
 			<div className="feed">
 				{data.map((item) => {
-					console.log(item,id)
 					return (
 						<div className="card home-card" key={item?._id}>
 							<h5 className="post_Name">
@@ -149,7 +148,7 @@ function Feeds() {
 							</div>
 							<div className="card-content">
 								<div className="p_body">
-								{item.Likes.includes(state._id) ? (
+									{item.Likes.includes(state._id) ? (
 										<span
 											className="like"
 											onClick={() => {
@@ -166,19 +165,16 @@ function Feeds() {
 											<FavoriteBorderIcon fontSize="large" color="action" />
 										</span>
 									)}
-									
+
 									<h6 className="Title">{item.title}</h6>
 								</div>
 
 								<h6 className="like_count">{item.Likes.length} Likes</h6>
 								<div className="cmt_box">
 									{item.comment.map((record) => {
-										console.log(record)
 										return (
 											<h6 key={record._id}>
-												
 												<span className="cmt_name">
-													
 													<Link
 														to={
 															record.postedBy !== id
