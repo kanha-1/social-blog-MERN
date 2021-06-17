@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
 import NavBar from "../Navbar";
 import { Link } from "react-router-dom";
 import "../style/Nav.css";
 import { UserContext } from "../../App";
-function Feeds() {
+function MyFriendsPost() {
 	const user = JSON.parse(localStorage.getItem("user"));
 	const Cname = user.name;
 	const id = user._id;
 	const { state, dispatch } = useContext(UserContext);
 	const [data, setData] = useState([]);
 	useEffect(() => {
-		fetch("/allpost", {
+		fetch("/friendpost", {
 			headers: {
 				Authorization: localStorage.getItem("token"),
 			},
@@ -78,7 +78,7 @@ function Feeds() {
 			});
 	};
 	// Comment function
-	const makeCOmment = (text, postId,postedBy) => {
+	const makeCOmment = (text, postId, postedBy) => {
 		fetch("/comment", {
 			method: "put",
 			headers: {
@@ -93,6 +93,7 @@ function Feeds() {
 		})
 			.then((res) => res.json())
 			.then((result) => {
+				console.log(result);
 				const newData = data.map((item) => {
 					if (item._id == result._id) {
 						return result;
@@ -150,7 +151,7 @@ function Feeds() {
 							</div>
 							<div className="card-content">
 								<div className="p_body">
-								{item.Likes.includes(state._id) ? (
+									{item.Likes.includes(state._id) ? (
 										<span
 											className="like"
 											onClick={() => {
@@ -167,7 +168,7 @@ function Feeds() {
 											<FavoriteBorderIcon fontSize="large" color="action" />
 										</span>
 									)}
-									
+
 									<h6 className="Title">{item.title}</h6>
 								</div>
 
@@ -176,13 +177,11 @@ function Feeds() {
 									{item.comment.map((record) => {
 										return (
 											<h6 key={record._id}>
-												
 												<span className="cmt_name">
-													
 													<Link
 														to={
 															record.name !== record._id
-																? "/profile/" +record.postedBy
+																? "/profile/" + record.postedBy
 																: "/profile"
 														}>
 														{record.name}
@@ -213,4 +212,4 @@ function Feeds() {
 	);
 }
 
-export default Feeds;
+export default MyFriendsPost;

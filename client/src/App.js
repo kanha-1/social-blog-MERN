@@ -17,6 +17,7 @@ import profile from "./Components/Dashboard/Profile";
 import Feeds from "./Components/Dashboard/Feeds";
 import CreatePost from "./Components/Dashboard/CreatePost";
 import UserProfile from "./Components/Dashboard/UserProfile"
+import FriendPost from "./Components/Dashboard/MyFriendsPost"
 import { reducer, initialState } from "./reducers/userReducer";
 
 export const UserContext = createContext();
@@ -67,6 +68,7 @@ const Routing = () => {
 			<Route exact path="/reset/:token/:email" component={ResetPassword} />
 			<Route exact path="/profile" component={profile} />
 			<PrivateRoute exact path="/Feed" component={Feeds} />
+			<PrivateRoute exact path="/friendPost" component={FriendPost} />
 			<PrivateRoute exact path="/CreatePost" component={CreatePost} />
 			<PrivateRoute exact path="/profile/:userid" component={UserProfile} />
 			<Route component={Error} />

@@ -6,10 +6,9 @@
 }
 .nav-wrapper {
 	display: flex;
-	background: linear-gradient(135deg,#ff4081,#3f51b5)!important;;
+	background: linear-gradient(135deg, #ff4081, #3f51b5) !important;
 	animation: gradient 15s ease infinite;
 }
-
 
 .brand-logo {
 	font-family: "Playfair Display", serif;
@@ -53,9 +52,9 @@ a:hover {
 	border-radius: 80px;
 	transition: transform 3s, filter 1s ease-in-out;
 }
-.img_Div>input {
-    display: none;
-  }
+.img_Div > input {
+	display: none;
+}
 /* .img_Div:hover {
 	background: rgb(187, 91, 91);
 	opacity: 0.5;
@@ -67,7 +66,7 @@ a:hover {
 	margin: "180px 10px";
 	border-bottom: 1px solid gray;
 }
-.user_Details{
+.user_Details {
 	margin-top: 25px;
 }
 .up_btn {
@@ -211,10 +210,10 @@ a:hover {
 	color: darkslategray;
 	overflow: scroll;
 }
-.cmt_box{
+.cmt_box {
 	height: 70px;
-	overflow-y:scroll; 
-    position:relative;
+	overflow-y: scroll;
+	position: relative;
 }
 .loader {
 	margin-left: auto;
@@ -239,6 +238,6 @@ a:hover {
 }
 
 /* Profile */
-.btn_title>input{
+.btn_title > input {
 	display: none;
 }

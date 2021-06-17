@@ -82,14 +82,13 @@ function Profile() {
 			<div className="parent">
 				<div className="profile">
 					<div class="img_Div">
-						<label for="file-input">
+						<label htmlFor="file-input">
 							<img
 								className="image_dp"
 								src={state ? state.pic : "loading"}
 								alt="user picture"
 							/>
 						</label>
-
 						<input
 							id="file-input"
 							type="file"
