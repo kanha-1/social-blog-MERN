@@ -11,6 +11,7 @@ import "../style/LoginIco.css";
 import { useHistory } from "react-router-dom";
 import GoogleLogin from "react-google-login";
 import FormDialog from "./ForgotPassword";
+import {  toast } from "react-toastify";
 
 function Login(props) {
 	const { state, dispatch } = useContext(UserContext);
@@ -48,6 +49,7 @@ function Login(props) {
 					localStorage.setItem("user", JSON.stringify(response.data.user));
 					dispatch({ type: "USER", payload: response.data.user });
 					props.history.push("/Feed");
+					toast.success("Login successfully");
 				}
 			})
 			.catch((err) => {

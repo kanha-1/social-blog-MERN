@@ -9,7 +9,7 @@ import "../style/LoginIco.css";
 import Facebook from "./Fb";
 import Google from "./Google";
 import { UserContext } from "../../App";
-
+import {  toast } from "react-toastify";
 function Register(props) {
 	const [msg, setMsg] = useState("");
 	const { state, dispatch } = useContext(UserContext);
@@ -41,6 +41,7 @@ function Register(props) {
 					localStorage.setItem("user", JSON.stringify(result.data.user));	
 					dispatch({ type: "USER", payload: result.data.user });
 					props.history.push("/Feed");
+					toast.success("Register successfully");
 				}
 			})
 			.catch((err) => {
