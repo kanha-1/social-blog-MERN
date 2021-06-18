@@ -97,7 +97,7 @@ export default function Navbar() {
 	const currentUser = JSON.parse(localStorage.getItem("user"));
 	const id = currentUser._id;
 	const user = JSON.parse(localStorage.getItem("user"));
-	console.log(search)
+	console.log(search);
 	const fetchUsers = (query) => {
 		setSearch(query);
 		fetch("/search-users", {
@@ -126,9 +126,6 @@ export default function Navbar() {
 	};
 	const handleClickAway = () => {
 		setopenClick(false);
-	};
-	const userDetailPage = async (id) => {
-		history.push(`/profile/${id}`);
 	};
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -274,10 +271,14 @@ export default function Navbar() {
 													container
 													direction="column">
 													{userDeatls?.map((item) => (
-														<Grid
+														<Link
 															item
 															key={item._id}
-															onClick={() => userDetailPage(item._id)}>
+															to={
+																item._id !== id
+																	? "/profile/" + item._id
+																	: "/profile"
+															}>
 															<Tooltip
 																title="click for seen user Details"
 																aria-label="add">
@@ -295,7 +296,7 @@ export default function Navbar() {
 																	/>
 																</Card>
 															</Tooltip>
-														</Grid>
+														</Link>
 													))}
 												</Grid>
 											</div>
