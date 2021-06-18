@@ -125,7 +125,7 @@ function Feeds() {
 		<React.Fragment>
 			<NavBar />
 			<div className="feed">
-				{data.map((item) => {
+				{data?.map((item) => {
 					return (
 						<div className="card home-card" key={item?._id}>
 							<h5 className="post_Name">

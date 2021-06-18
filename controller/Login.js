@@ -1,7 +1,7 @@
 const User = require("../model/user");
 const { hash, compare } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
-const { loginvalidate } = require("../config/Validation");
+const { loginvalidate } = require("../validation");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 module.exports = {

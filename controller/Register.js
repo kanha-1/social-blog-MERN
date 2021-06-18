@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { sign } = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
-const { registervalidate } = require("../config/Validation");
+const { registervalidate } = require("../validation");
 const sendgridTransport = require("nodemailer-sendgrid-transport");
 require("dotenv").config();
 // Send mail after register

@@ -59,6 +59,7 @@ function Profile() {
 					})
 						.then((res) => res.json())
 						.then((result) => {
+							// alert('profile pic updated')
 							// console.log(result)
 							// localStorage.setItem(
 							// 	"user",
