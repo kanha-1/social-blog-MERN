@@ -15,6 +15,9 @@ p {
 p {
 	margin-bottom: 0;
 }
+.alert{
+	font-weight: bold;
+}
 body {
 	font-family: CircularStd, sans-serif;
 	font-size: 15px;

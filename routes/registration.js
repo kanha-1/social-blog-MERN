@@ -5,6 +5,6 @@ const register = require("../controller/Register");
 // Get all data
 router.get("/users", register.GetUser);
 // Register user
-router.post("/", register.Register);
+router.post("/register", register.Register);
 
 module.exports = router;

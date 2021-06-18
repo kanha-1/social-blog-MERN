@@ -32,9 +32,10 @@ function Register(props) {
 		})
 			.then((result) => {
 				// console.log(result);
-				if (result.data.message === "Email alredy exit") {
+				if (result.data.message = result.data.message) {
 					// alert("E-mail alredy exits");
 					setMsg(result.data.message);
+					toast.error(result.data.message)
 				}
 				else if (result.data.token) {
 					localStorage.setItem("token", result.data.token);

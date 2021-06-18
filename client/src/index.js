@@ -9,7 +9,7 @@ import { BrowserRouter  } from 'react-router-dom'
 ReactDOM.render(
   <BrowserRouter>
     <App />
-    <ToastContainer role="alert" autoClose={2000} position="bottom-right"   />
+    <ToastContainer role="alert" autoClose={2000} position="top-right"   />
   </BrowserRouter>,
   document.getElementById('root')
 );

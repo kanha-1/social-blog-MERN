@@ -3,7 +3,7 @@ import { useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
-
+import { toast } from "react-toastify";
 function ResetPassword(props) {
 	const [msg, setMsg] = useState("");
 	const [input, setIput] = useState({
@@ -23,7 +23,7 @@ function ResetPassword(props) {
 		})
 			.then((response) => {
 				if (response.data.message === "Password resetted succesfully") {
-					setMsg("Password reset successfully");
+					toast.success("Password reset successfully");
 
 					setTimeout(() => {
 						props.history.push("/login");
@@ -33,6 +33,7 @@ function ResetPassword(props) {
 					response.data.message ===
 					"Password and confirm password does not match"
 				) {
+					toast.success("Password and confirm password does not match")
 					setMsg(response.data.message);
 				}
 				// console.log(response.data.message);
@@ -53,7 +54,7 @@ function ResetPassword(props) {
 								<div className="col-md-12">
 									<div className="content">
 										<h1>Reset Password</h1>
-										<h3 className="alert">{msg}</h3>
+										<h5 className="alert">{msg}</h5>
 										<form className="signup" onSubmit={onSubmit}>
 											<div className="form-parent">
 												<div className="form-group">
@@ -101,7 +102,6 @@ function ResetPassword(props) {
 					{/* <!-- Start of Sidebar --> */}
 					<div className="aside order-md-1 gridient">
 						<div className="container">
-							
 							<div className="col-md-12">
 								<div className="preference">
 									<h2>Hello, CoWorkers!</h2>

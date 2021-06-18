@@ -32,18 +32,28 @@ function Login(props) {
 			password: values.password,
 		})
 			.then((response) => {
-				// console.log(response)
-				if (response.data.message === "Invalid credential") {
+				console.log(response)
+				if (response.data.message = response.data.message) {
 					setMsg(response.data.message);
-				} else if (
-					response.data.message === "Not a register user please signup !"
-				) {
-					setMsg(response.data.message);
-				} else if (
-					response.data.message === "May be you registerd using google or Fb"
-				) {
-					setMsg(response.data.message);
-				} else {
+					toast.error(response.data.message);
+				}
+
+				// if (response.data.message === "Invalid credential") {
+				// 	setMsg(response.data.message);
+				// 	toast.error(response.data.message);
+				// }
+				//  else if (
+				// 	response.data.message === "Not a register user please signup !"
+				// ) {
+				// 	setMsg(response.data.message);
+				// 	toast.error(response.data.message);
+				// } else if (
+				// 	response.data.message === "May be you registerd using google or Fb"
+				// ) {
+				// 	setMsg(response.data.message);
+				// 	toast.error(response.data.message);
+				// } 
+				else {
 					// console.log(response.data.user)
 					localStorage.setItem("token", response.data.token);
 					localStorage.setItem("user", JSON.stringify(response.data.user));
@@ -53,7 +63,7 @@ function Login(props) {
 				}
 			})
 			.catch((err) => {
-				console.log(err);
+				toast.error("server error");
 			});
 	};
 

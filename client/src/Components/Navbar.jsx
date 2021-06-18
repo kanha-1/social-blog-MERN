@@ -26,6 +26,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import { toast } from "react-toastify";
 const useStyles = makeStyles((theme) => ({
 	grow: {
 		flexGrow: 1,
@@ -218,6 +219,7 @@ export default function Navbar() {
 			<MenuItem
 				onClick={() => {
 					localStorage.clear();
+					toast.success("logout successfully")
 					history.push("/login");
 				}}>
 				<ExitToAppIcon />

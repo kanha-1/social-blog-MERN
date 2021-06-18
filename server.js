@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const path = require('path')
-require("./db");
+require("./config/db");
 require("dotenv").config();
 const PORT = process.env.PORT || 8080
 app.use(cors());
@@ -20,8 +20,8 @@ const postRoute = require("./routes/post")
 const usersRoute = require('./routes/users')
 
 //Use middlewares
-app.use("/register", registerRoute);
-app.use("/login", loginRoute);
+app.use( registerRoute);
+app.use(loginRoute);
 app.use(dashboard);
 app.use(FacebookLogin)
 app.use(GoogleLogin)

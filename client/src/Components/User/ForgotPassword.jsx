@@ -4,10 +4,11 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+import { DialogContentText, Typography } from "@material-ui/core";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useState } from "react";
 import Axios from "axios";
+import { toast } from "react-toastify";
 import "../style/LoginIco.css";
 
 function FormDialog() {
@@ -30,18 +31,18 @@ function FormDialog() {
 		})
 			.then((response) => {
 				if (response.data.message === "Mail sent successfully") {
-					setErr("Email sent succssfully");
+					toast.success("Email sent succssfully");
+					setOpen(false);
 				}
 				if (response.data.message === "Not a register user please signup !") {
 					setErr("User with this email dosn't exit");
+					toast.error("User with this email dosn't exit");
 				}
 				// console.log(response);
 			})
 			.catch((err) => {
 				console.log(err);
 			});
-		console.log(err);
-		setErr("");
 	};
 
 	return (
@@ -55,11 +56,12 @@ function FormDialog() {
 				aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">*Forgot Password</DialogTitle>
 				<DialogContent>
-					<DialogContentText>{err}</DialogContentText>
-					<DialogContentText>
+					<Typography color="secondary">{err}</Typography>
+					<br />
+					<Typography>
 						To Reset your password please enter your email address here. We will
 						send a reset link.
-					</DialogContentText>
+					</Typography>
 					<TextField
 						autoFocus
 						margin="dense"
