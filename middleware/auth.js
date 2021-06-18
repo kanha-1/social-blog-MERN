@@ -13,7 +13,6 @@ middleware.authentication = async (req, res, next) => {
 			});
 
 			req.user = user;
-
 			next();
 		} catch (err) {
 			console.log("Here is the error", err.message);

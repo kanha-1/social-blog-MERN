@@ -1,7 +1,6 @@
 const User = require("../model/user");
 const { hash, compare } = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
-const { loginvalidate } = require("../validation");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 module.exports = {
@@ -45,8 +44,6 @@ module.exports = {
 	// },
 	Login: async (req, res) => {
 		try {
-			const { error } = loginvalidate(req.body);
-			if (error) return res.json({ message: error.details[0].message });
 			// Check email user
 			const user = await User.findOne({ email: req.body.email });
 			if (!user)
@@ -58,7 +55,7 @@ module.exports = {
 			);
 			if (!validpassword) return res.json({ message: "Invalid credential" });
 			// create token
-			const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
+			const token = sign({ email: user.email, id: user._id }, process.env.SECRET_KEY);
 			res.json({
 				token: token,
 				user: user,

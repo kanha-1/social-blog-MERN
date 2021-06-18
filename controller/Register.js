@@ -131,7 +131,7 @@ module.exports = {
 			</div>
 		`,
 			});
-			const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
+			const token = sign({email: user.email, id: user._id }, process.env.SECRET_KEY);
 			res.json({ token: token, user: savedUser });
 		} catch (err) {
 			res.json(err.message);

@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../App";
 import "../style/Nav.css";
 import NavBar from "../Navbar";
+import { toast } from "react-toastify";
 
 function Profile() {
 	const user = JSON.parse(localStorage.getItem("user"));
@@ -42,11 +43,7 @@ function Profile() {
 				.then((data) => {
 					// console.log(data);
 					// setUrl(data.url);
-					localStorage.setItem(
-						"user",
-						JSON.stringify({ ...state, pic: data.url }),
-					);
-					dispatch({ type: "UPDATEPIC", payload: data.url });
+					
 					fetch("/updatepic", {
 						method: "put",
 						headers: {
@@ -59,13 +56,12 @@ function Profile() {
 					})
 						.then((res) => res.json())
 						.then((result) => {
-							// alert('profile pic updated')
-							// console.log(result)
-							// localStorage.setItem(
-							// 	"user",
-							// 	JSON.stringify({ ...state, pic: data.pic }),
-							// );
-							// dispatch({ type: "UPDATEPIC", payload: result.pic });
+							localStorage.setItem(
+								"user",
+								JSON.stringify({ ...state, pic: result.pic }),
+							);
+							dispatch({ type: "UPDATEPIC", payload: result.pic });
+							toast.success('profile pic updated')
 						});
 				})
 				.catch((err) => {

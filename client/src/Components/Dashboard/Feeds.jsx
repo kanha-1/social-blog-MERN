@@ -127,81 +127,87 @@ function Feeds() {
 			<div className="feed">
 				{data?.map((item) => {
 					return (
-						<div className="card home-card" key={item?._id}>
-							<h5 className="post_Name">
-								<Link
-									to={
-										item.postedBy._id !== id
-											? "/profile/" + item.postedBy._id
-											: "/profile"
-									}>
-									{item.postedBy.name}
-								</Link>
-								{item.postedBy._id == id && (
-									<i
-										className="fas fa-trash del_ico"
-										onClick={() => Delete(item._id)}></i>
-								)}
-							</h5>
-							<div className="card-img">
-								<img src={item.photo} alt="" />
-							</div>
-							<div className="card-content">
-								<div className="p_body">
-									{item.Likes.includes(state._id) ? (
-										<span
-											className="like"
-											onClick={() => {
-												postunLike(item._id);
-											}}>
-											<FavoriteIcon fontSize="large" color="secondary" />
-										</span>
-									) : (
-										<span
-											className="like"
-											onClick={() => {
-												postLike(item._id);
-											}}>
-											<FavoriteBorderIcon fontSize="large" color="action" />
-										</span>
-									)}
-
-									<h6 className="Title">{item.title}</h6>
-								</div>
-
-								<h6 className="like_count">{item.Likes.length} Likes</h6>
-								<div className="cmt_box">
-									{item.comment.map((record) => {
-										return (
-											<h6 key={record._id}>
-												<span className="cmt_name">
-													<Link
-														to={
-															record.postedBy !== id
-																? "/profile/" + record.postedBy
-																: "/profile"
-														}>
-														{record.name}
-													</Link>
-													:
+						<>
+							{item ? (
+								<div className="card home-card" key={item?._id}>
+									<h5 className="post_Name">
+										<Link
+											to={
+												item.postedBy._id !== id
+													? "/profile/" + item.postedBy._id
+													: "/profile"
+											}>
+											{item.postedBy.name}
+										</Link>
+										{item.postedBy._id == id && (
+											<i
+												className="fas fa-trash del_ico"
+												onClick={() => Delete(item._id)}></i>
+										)}
+									</h5>
+									<div className="card-img">
+										<img src={item.photo} alt="" />
+									</div>
+									<div className="card-content">
+										<div className="p_body">
+											{item.Likes.includes(state._id) ? (
+												<span
+													className="like"
+													onClick={() => {
+														postunLike(item._id);
+													}}>
+													<FavoriteIcon fontSize="large" color="secondary" />
 												</span>
+											) : (
+												<span
+													className="like"
+													onClick={() => {
+														postLike(item._id);
+													}}>
+													<FavoriteBorderIcon fontSize="large" color="action" />
+												</span>
+											)}
 
-												{/* <span className="cmt_name">{record.name}: </span> */}
-												<span className="Comment">{record.text}</span>
-											</h6>
-										);
-									})}
+											<h6 className="Title">{item.title}</h6>
+										</div>
+
+										<h6 className="like_count">{item.Likes.length} Likes</h6>
+										<div className="cmt_box">
+											{item.comment.map((record) => {
+												return (
+													<h6 key={record._id}>
+														<span className="cmt_name">
+															<Link
+																to={
+																	record.postedBy !== id
+																		? "/profile/" + record.postedBy
+																		: "/profile"
+																}>
+																{record.name}
+															</Link>
+															:
+														</span>
+
+														{/* <span className="cmt_name">{record.name}: </span> */}
+														<span className="Comment">{record.text}</span>
+													</h6>
+												);
+											})}
+										</div>
+										<form
+											className="input_cmt"
+											onSubmit={(e) => {
+												e.preventDefault();
+												makeCOmment(e.target[0].value, item._id);
+											}}>
+											<input type="text" placeholder="Add comment" />
+										</form>
+									</div>
 								</div>
-								<form
-									className="input_cmt"
-									onSubmit={(e) => {
-										e.preventDefault();
-										makeCOmment(e.target[0].value, item._id);
-									}}>
-									<input type="text" placeholder="Add comment" />
-								</form>
-							</div>
-						</div>
+							) : (
+								<div className="loader"></div>
+							)}
+						</>
 					);
 				})}
 			</div>
