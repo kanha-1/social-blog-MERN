@@ -7,9 +7,8 @@ import "../style/Nav.css";
 import { UserContext } from "../../App";
 function MyFriendsPost() {
 	const user = JSON.parse(localStorage.getItem("user"));
-	const Cname = user.name;
 	const id = user._id;
-	const { state, dispatch } = useContext(UserContext);
+	const { state } = useContext(UserContext);
 	const [data, setData] = useState([]);
 	useEffect(() => {
 		fetch("/friendpost", {
@@ -93,7 +92,6 @@ function MyFriendsPost() {
 		})
 			.then((res) => res.json())
 			.then((result) => {
-				console.log(result);
 				const newData = data.map((item) => {
 					if (item._id == result._id) {
 						return result;

@@ -4,7 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import { DialogContentText, Typography } from "@material-ui/core";
+import {  Typography } from "@material-ui/core";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useState } from "react";
 import Axios from "axios";
@@ -63,11 +63,11 @@ function FormDialog() {
 						send a reset link.
 					</Typography>
 					<TextField
+						type="email"
 						autoFocus
 						margin="dense"
 						name="name"
 						label="Email Address"
-						type="email"
 						onChange={inputEvent}
 						// value={input.email}
 						autoComplete="off"

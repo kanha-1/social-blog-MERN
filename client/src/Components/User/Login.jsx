@@ -5,11 +5,11 @@ import "../style/style.css";
 import Axios from "axios";
 import Email from "@material-ui/icons/AlternateEmail";
 import LockIcon from "@material-ui/icons/Lock";
-import FacebookLogin from "react-facebook-login";
-import FacebookIcon from "@material-ui/icons/Facebook";
+// import FacebookLogin from "react-facebook-login";
+// import FacebookIcon from "@material-ui/icons/Facebook";
 import "../style/LoginIco.css";
 import { useHistory } from "react-router-dom";
-import GoogleLogin from "react-google-login";
+// import GoogleLogin from "react-google-login";
 import FormDialog from "./ForgotPassword";
 import {  toast } from "react-toastify";
 
@@ -32,29 +32,13 @@ function Login(props) {
 			password: values.password,
 		})
 			.then((response) => {
-				console.log(response)
+				
 				if (response.data.message = response.data.message) {
 					setMsg(response.data.message);
 					toast.error(response.data.message);
 				}
 
-				// if (response.data.message === "Invalid credential") {
-				// 	setMsg(response.data.message);
-				// 	toast.error(response.data.message);
-				// }
-				//  else if (
-				// 	response.data.message === "Not a register user please signup !"
-				// ) {
-				// 	setMsg(response.data.message);
-				// 	toast.error(response.data.message);
-				// } else if (
-				// 	response.data.message === "May be you registerd using google or Fb"
-				// ) {
-				// 	setMsg(response.data.message);
-				// 	toast.error(response.data.message);
-				// } 
 				else {
-					// console.log(response.data.user)
 					localStorage.setItem("token", response.data.token);
 					localStorage.setItem("user", JSON.stringify(response.data.user));
 					dispatch({ type: "USER", payload: response.data.user });
@@ -68,56 +52,54 @@ function Login(props) {
 	};
 
 	// Facebook login
-	const history = useHistory();
-	const responseFacebook = (response) => {
-		Axios({
-			method: "POST",
-			url: "http://localhost:8080/fblogin",
-			data: { accessToken: response.accessToken, userID: response.userID },
-		})
-			.then((res) => {
-				// console.log("Fb Login successfully", res);
-				localStorage.setItem("token", res.data.token);
-				localStorage.setItem("user", JSON.stringify(res.data.user));
+	// const history = useHistory();
+	// const responseFacebook = (response) => {
+	// 	Axios({
+	// 		method: "POST",
+	// 		url: "http://localhost:8080/fblogin",
+	// 		data: { accessToken: response.accessToken, userID: response.userID },
+	// 	})
+	// 		.then((res) => {
+	// 			// console.log("Fb Login successfully", res);
+	// 			localStorage.setItem("token", res.data.token);
+	// 			localStorage.setItem("user", JSON.stringify(res.data.user));
 
-				if (res.data.token) {
-					history.push("/Feed");
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
+	// 			if (res.data.token) {
+	// 				history.push("/Feed");
+	// 			}
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
 
 	// Google Login
 	// const [pic, setPic] = useState("");
-	const responseGooglesuccess = (response) => {
-		// console.log(response);
-		Axios({
-			method: "POST",
-			url: "http://localhost:8080/googlelogin",
-			data: { tokenId: response.tokenId },
-		})
-			.then((respo) => {
-				// console.log("Google login Successfully", respo.data.user.picture);
-				// setPic(respo.data.user.picture);
-				localStorage.setItem("token", respo.data.token);
-				localStorage.setItem("user", JSON.stringify(respo.data.user));
-				dispatch({ type: "USER", payload: respo.data.user });
+	// const responseGooglesuccess = (response) => {
+	// 	// console.log(response);
+	// 	Axios({
+	// 		method: "POST",
+	// 		url: "http://localhost:8080/googlelogin",
+	// 		data: { tokenId: response.tokenId },
+	// 	})
+	// 		.then((respo) => {
+				
+	// 			localStorage.setItem("token", respo.data.token);
+	// 			localStorage.setItem("user", JSON.stringify(respo.data.user));
+	// 			dispatch({ type: "USER", payload: respo.data.user });
 
-				// const pic = respo.data.user.picture
-				// console.log(pic)
-				if (respo.data.token) {
-					history.push("/Feed");
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	};
-	const responseGooglefailure = (response) => {
-		// console.log(response);
-	};
+			
+	// 			if (respo.data.token) {
+	// 				history.push("/Feed");
+	// 			}
+	// 		})
+	// 		.catch((err) => {
+	// 			console.log(err);
+	// 		});
+	// };
+	// const responseGooglefailure = (response) => {
+	// 	// console.log(response);
+	// };
 
 	return (
 		<div className="start">

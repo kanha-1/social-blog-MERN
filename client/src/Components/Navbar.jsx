@@ -34,12 +34,6 @@ const useStyles = makeStyles((theme) => ({
 	menuButton: {
 		marginRight: theme.spacing(2),
 	},
-	// title: {
-	// 	display: "none",
-	// 	[theme.breakpoints.up("sm")]: {
-	// 		display: "block",
-	// 	},
-	// },
 	search: {
 		position: "relative",
 		borderRadius: theme.shape.borderRadius,
@@ -98,7 +92,6 @@ export default function Navbar() {
 	const currentUser = JSON.parse(localStorage.getItem("user"));
 	const id = currentUser._id;
 	const user = JSON.parse(localStorage.getItem("user"));
-	console.log(search);
 	const fetchUsers = (query) => {
 		setSearch(query);
 		fetch("/search-users", {

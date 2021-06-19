@@ -6,13 +6,13 @@ import Email from "@material-ui/icons/AlternateEmail";
 import Phone from "@material-ui/icons/PhoneAndroid";
 import LockIcon from "@material-ui/icons/Lock";
 import "../style/LoginIco.css";
-import Facebook from "./Fb";
-import Google from "./Google";
+// import Facebook from "./Fb";
+// import Google from "./Google";
 import { UserContext } from "../../App";
 import {  toast } from "react-toastify";
 function Register(props) {
 	const [msg, setMsg] = useState("");
-	const { state, dispatch } = useContext(UserContext);
+	const {  dispatch } = useContext(UserContext);
 	const [values, setvalues] = useState({
 		name: "",
 		email: "",
