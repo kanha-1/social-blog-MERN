@@ -14,3 +14,6 @@ code {
 a:hover{
   color: rgb(173, 135, 216) !important;
 }
+img{
+  -webkit-user-drag: none;
+}
