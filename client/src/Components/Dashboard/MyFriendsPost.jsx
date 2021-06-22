@@ -5,6 +5,7 @@ import NavBar from "../Navbar";
 import { Link } from "react-router-dom";
 import "../style/Nav.css";
 import { UserContext } from "../../App";
+import { toast } from "react-toastify";
 function MyFriendsPost() {
 	const user = JSON.parse(localStorage.getItem("user"));
 	const id = user._id;
@@ -19,6 +20,9 @@ function MyFriendsPost() {
 			.then((res) => res.json())
 			.then((result) => {
 				setData(result.posts);
+			})
+			.catch((err) => {
+				toast.error("server error");
 			});
 	}, []);
 

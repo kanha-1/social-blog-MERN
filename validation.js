@@ -1,5 +1,4 @@
 const Joi = require("joi");
-
 const registervalidate = (data) => {
 	const schema = Joi.object({
 		name: Joi.string().min(5).required(),
@@ -10,4 +9,3 @@ const registervalidate = (data) => {
 	return schema.validate(data);
 };
 module.exports.registervalidate = registervalidate;
-

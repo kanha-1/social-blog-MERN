@@ -4,6 +4,7 @@ import "../style/Nav.css";
 import { useParams } from "react-router-dom";
 import NavBar from "../Navbar";
 import Button from "@material-ui/core/Button";
+import { toast } from "react-toastify";
 
 function Userprofile() {
 	const [userProfile, setProfile] = useState(null);

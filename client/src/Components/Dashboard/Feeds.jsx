@@ -3,6 +3,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import NavBar from "../Navbar";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import "../style/Nav.css";
 import { UserContext } from "../../App";
 function Feeds() {
@@ -19,6 +20,9 @@ function Feeds() {
 			.then((res) => res.json())
 			.then((result) => {
 				setData(result.posts);
+			})
+			.catch((err) => {
+				toast.error("server error");
 			});
 	}, []);
 
@@ -124,11 +128,11 @@ function Feeds() {
 	return (
 		<React.Fragment>
 			<NavBar />
-			<div className="feed">
-				{data?.map((item) => {
-					return (
-						<>
-							{item ? (
+			{data ? (
+				<div className="feed">
+					{data?.map((item) => {
+						return (
+							<>
 								<div className="card home-card" key={item?._id}>
 									<h5 className="post_Name">
 										<Link
@@ -204,13 +208,13 @@ function Feeds() {
 										</form>
 									</div>
 								</div>
-							) : (
-								<div className="loader"></div>
-							)}
-						</>
-					);
-				})}
-			</div>
+							</>
+						);
+					})}
+				</div>
+			) : (
+				<div className="loader"></div>
+			)}
 		</React.Fragment>
 	);
 }

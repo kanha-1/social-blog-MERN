@@ -6,8 +6,6 @@ import { toast } from "react-toastify";
 
 function Profile() {
 	const user = JSON.parse(localStorage.getItem("user"));
-
-	// const pic = user.pic;
 	const name = user.name;
 	const email = user.email;
 	const followers = user.followers;
@@ -26,6 +24,9 @@ function Profile() {
 			.then((result) => {
 				setpics(result.mypost);
 				// console.log(result.mypost);
+			})
+			.catch((err) => {
+				toast.error("server error");
 			});
 	}, []);
 
@@ -43,7 +44,7 @@ function Profile() {
 				.then((data) => {
 					// console.log(data);
 					// setUrl(data.url);
-					
+
 					fetch("/updatepic", {
 						method: "put",
 						headers: {
@@ -61,7 +62,10 @@ function Profile() {
 								JSON.stringify({ ...state, pic: result.pic }),
 							);
 							dispatch({ type: "UPDATEPIC", payload: result.pic });
-							toast.success('profile pic updated')
+							toast.success("profile pic updated");
+						})
+						.catch((err) => {
+							toast.error("server error");
 						});
 				})
 				.catch((err) => {
