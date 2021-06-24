@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useReducer,createContext } from "react";
+import React, { useEffect, useContext, useReducer, createContext } from "react";
 import {
 	Route,
 	Switch,
@@ -16,8 +16,8 @@ import Error from "./Components/User/Error";
 import profile from "./Components/Dashboard/Profile";
 import Feeds from "./Components/Dashboard/Feeds";
 import CreatePost from "./Components/Dashboard/CreatePost";
-import UserProfile from "./Components/Dashboard/UserProfile"
-import FriendPost from "./Components/Dashboard/MyFriendsPost"
+import UserProfile from "./Components/Dashboard/UserProfile";
+import FriendPost from "./Components/Dashboard/MyFriendsPost";
 import { reducer, initialState } from "./reducers/userReducer";
 
 export const UserContext = createContext();
@@ -51,16 +51,19 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 const Routing = () => {
 	const history = useHistory();
-	const {state,dispatch}= useContext(UserContext)
-	useEffect(()=>{
-		const user = JSON.parse(localStorage.getItem("user"))
-		if(user){
-		dispatch({type:"USER",payload:user})
-			history.push('/Feed')
+	const { state, dispatch } = useContext(UserContext);
+	console.log(state)
+	useEffect(() => {
+		const user = JSON.parse(localStorage.getItem("user"));
+		console.log(user)
+		if (user) {
+			dispatch({ type: "USER", payload: user });
+			history.push("/Feed");
+		} else {
+			localStorage.clear();
 		}
-	},[])
+	}, []);
 	return (
-		
 		<Switch>
 			<Route exact path="/" component={Welcome} />
 			<Route exact path="/login" component={Login} />
@@ -73,14 +76,12 @@ const Routing = () => {
 			<PrivateRoute exact path="/profile/:userid" component={UserProfile} />
 			<Route component={Error} />
 		</Switch>
-		
 	);
 };
 function App() {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	return (
-
-		<UserContext.Provider value={{state,dispatch}}>
+		<UserContext.Provider value={{ state, dispatch }}>
 			<BrowserRouter>
 				{/* <NavBar /> */}
 				<Routing />
