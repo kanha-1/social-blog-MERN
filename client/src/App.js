@@ -52,7 +52,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const Routing = () => {
 	const history = useHistory();
 	const { state, dispatch } = useContext(UserContext);
-	console.log(state)
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem("user"));
 		console.log(user)
@@ -83,7 +82,6 @@ function App() {
 	return (
 		<UserContext.Provider value={{ state, dispatch }}>
 			<BrowserRouter>
-				{/* <NavBar /> */}
 				<Routing />
 			</BrowserRouter>
 		</UserContext.Provider>

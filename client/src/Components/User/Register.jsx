@@ -120,6 +120,7 @@ function Register(props) {
 											</button>
 										</div>
 										<div className="form-group">
+											
 											<input
 												type="password"
 												name="password"
