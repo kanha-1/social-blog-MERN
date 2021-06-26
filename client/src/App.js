@@ -18,6 +18,7 @@ import Feeds from "./Components/Dashboard/Feeds";
 import CreatePost from "./Components/Dashboard/CreatePost";
 import UserProfile from "./Components/Dashboard/UserProfile";
 import FriendPost from "./Components/Dashboard/MyFriendsPost";
+import Messages from "./Components/Messanger/MessagesBox"
 import { reducer, initialState } from "./reducers/userReducer";
 
 export const UserContext = createContext();
@@ -54,7 +55,6 @@ const Routing = () => {
 	const { state, dispatch } = useContext(UserContext);
 	useEffect(() => {
 		const user = JSON.parse(localStorage.getItem("user"));
-		console.log(user)
 		if (user) {
 			dispatch({ type: "USER", payload: user });
 			history.push("/Feed");
@@ -73,6 +73,7 @@ const Routing = () => {
 			<PrivateRoute exact path="/friendPost" component={FriendPost} />
 			<PrivateRoute exact path="/CreatePost" component={CreatePost} />
 			<PrivateRoute exact path="/profile/:userid" component={UserProfile} />
+			<PrivateRoute exact path="/messages" component={Messages} />
 			<Route component={Error} />
 		</Switch>
 	);

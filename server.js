@@ -18,6 +18,8 @@ const forgotPassword = require("./routes/ForgotPassword")
 const resetpassword = require("./routes/ResetPassword")
 const postRoute = require("./routes/post")
 const usersRoute = require('./routes/users')
+const conversation = require('./routes/conversation')
+const messages = require("./routes/messages")
 
 //Use middlewares
 app.use( registerRoute);
@@ -29,6 +31,8 @@ app.use(forgotPassword)
 app.use(resetpassword)
 app.use(postRoute)
 app.use(usersRoute)
+app.use(conversation)
+app.use(messages)
 
 // heroku deploy
 if(process.env.NODE_ENV == "production"){

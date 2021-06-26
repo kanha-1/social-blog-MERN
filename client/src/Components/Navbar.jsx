@@ -26,6 +26,8 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import InstagramIcon from "@material-ui/icons/Instagram";
+import Badge from "@material-ui/core/Badge";
+import MailIcon from "@material-ui/icons/Mail";
 import { toast } from "react-toastify";
 const useStyles = makeStyles((theme) => ({
 	grow: {
@@ -194,6 +196,16 @@ export default function Navbar() {
 				</Link>
 			</MenuItem>
 			<MenuItem>
+				<Link to="/messages">
+					<Box>
+						<Badge badgeContent={5} color="blue">
+							<MailIcon />
+						</Badge>
+						<Typography variant="caption">Messages</Typography>
+					</Box>
+				</Link>
+			</MenuItem>
+			<MenuItem>
 				<Link to="/CreatePost">
 					<Box>
 						<CloudUploadIcon />
@@ -212,7 +224,7 @@ export default function Navbar() {
 			<MenuItem
 				onClick={() => {
 					localStorage.clear();
-					toast.success("logout successfully")
+					toast.success("logout successfully");
 					history.push("/login");
 				}}>
 				<ExitToAppIcon />
@@ -322,9 +334,17 @@ export default function Navbar() {
 								</Box>
 							</Link>
 							<Link to="/CreatePost">
-								<Box>
+								<Box mr={3}>
 									<CloudUploadIcon />
 									<Typography variant="caption">Create post</Typography>
+								</Box>
+							</Link>
+							<Link to="/messages">
+								<Box>
+									<Badge badgeContent={5} color="blue">
+										<MailIcon />
+									</Badge>
+									{/* <Typography variant="caption"> Messages</Typography> */}
 								</Box>
 							</Link>
 						</Box>

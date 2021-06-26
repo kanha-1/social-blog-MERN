@@ -4,7 +4,7 @@ const middleware = require("../middleware/auth");
 const users = require('../controller/usersController');
 
 
-router.get('/user/:id',middleware.authentication,users.getuserByID)
+router.get('/user/:id',users.getuserByID)
 router.put("/follow", middleware.authentication,users.Follow);
 router.put("/unfollow", middleware.authentication,users.Unfollow);
 
