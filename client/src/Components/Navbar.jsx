@@ -198,7 +198,7 @@ export default function Navbar() {
 			<MenuItem>
 				<Link to="/messages">
 					<Box>
-						<Badge badgeContent={5} color="blue">
+						<Badge badgeContent={0} color="blue">
 							<MailIcon />
 						</Badge>
 						<Typography variant="caption">Messages</Typography>
@@ -341,7 +341,7 @@ export default function Navbar() {
 							</Link>
 							<Link to="/messages">
 								<Box>
-									<Badge badgeContent={5} color="blue">
+									<Badge badgeContent={0} color="blue">
 										<MailIcon />
 									</Badge>
 									{/* <Typography variant="caption"> Messages</Typography> */}

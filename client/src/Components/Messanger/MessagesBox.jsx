@@ -6,11 +6,9 @@ import Message from "./Messages";
 import Online from "./Online";
 import Conversations from "./Conversation";
 import { Typography } from "@material-ui/core";
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 import { UserContext } from "../../App";
 import Axios from "axios";
-import { log } from "debug";
-import { captureRejections } from "events";
 function Messages() {
 	const user = JSON.parse(localStorage.getItem("user"));
 	const id = user._id;
@@ -19,7 +17,11 @@ function Messages() {
 	const [currentChat, setCurrentChat] = useState(null);
 	const [messages, setMessages] = useState([]);
 	const [newMessages, setNewMessages] = useState("");
-	// const scrollRef = useRef();
+	const [onlineUsers, setOnlineUsers] = useState([]);
+	const [socket, setSocket] = useState(null);
+	// const socket = useRef();
+	const scrollRef = useRef();
+
 	useEffect(() => {
 		const getConversation = async () => {
 			try {
@@ -31,6 +33,7 @@ function Messages() {
 		};
 		getConversation();
 	}, [id]);
+
 	useEffect(() => {
 		const getMessages = async () => {
 			try {
@@ -54,14 +57,13 @@ function Messages() {
 			const res = await Axios.post("/messages", message);
 			setMessages([...messages, res.data]);
 			setNewMessages("");
-			// scrollRef.current?.scrollIntoView({ behavior: "smooth" });
 		} catch (error) {
 			console.log(error);
 		}
 	};
 	// useEffect(() => {
-	//     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-	//   }, [messages]);
+	// 	scrollRef.current.scrollIntoView({ behavior: "smooth" });
+	// }, [messages]);
 
 	return (
 		<>
@@ -106,11 +108,11 @@ function Messages() {
 				</div>
 				<div className="chatOnline">
 					<div className="chatOnlineWrapper">
-						{/* <ChatOnline
-              onlineUsers={onlineUsers}
-              currentId={user._id}
-              setCurrentChat={setCurrentChat}
-            /> */}
+						{/* <Online
+							onlineUsers={onlineUsers}
+							currentId={user._id}
+							setCurrentChat={setCurrentChat}
+						/> */}
 					</div>
 				</div>
 			</div>
