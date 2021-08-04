@@ -51,7 +51,7 @@ module.exports = {
 				from: process.env.G_NAME,
 				subject: "Account register successfully",
 				html: `<div>
-				<h1>Welcome to coworks</h1>
+				<h1>Welcome to Social-Blog</h1>
 				<h3>Here is your account details</h3>
 				</br>
 				<p>Name:${savedUser.name}</p> </br>
