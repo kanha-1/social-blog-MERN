@@ -1,165 +1,132 @@
 import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../App";
 import "../style/Nav.css";
-import { useParams } from "react-router-dom";
 import NavBar from "../Navbar";
-import Button from "@material-ui/core/Button";
 import { toast } from "react-toastify";
 
-function Userprofile() {
-	const [userProfile, setProfile] = useState(null);
+function Profile() {
+	const user = JSON.parse(localStorage.getItem("user"));
+	const name = user?.name;
+	const email = user?.email;
+	const followers = user?.followers;
+	const following = user?.following;
+	const [image, setImage] = useState("");
+	const [pics, setpics] = useState([]);
 	const { state, dispatch } = useContext(UserContext);
-	const { userid } = useParams();
-	const [show, setHide] = useState(
-		state ? !state.following?.includes(userid) : true,
-	);
+	// console.log(state)
 	useEffect(() => {
-		fetch(`/user/${userid}`, {
+		fetch("/mypost", {
 			headers: {
 				Authorization: localStorage.getItem("token"),
 			},
 		})
 			.then((res) => res.json())
 			.then((result) => {
-				setProfile(result);
+				setpics(result.mypost);
+				// console.log(result.mypost);
 			})
 			.catch((err) => {
-				console.log(err);
+				toast.error("server error");
 			});
-	}, [userid]);
+	}, []);
 
-	const follow = () => {
-		fetch("/follow", {
-			method: "put",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: localStorage.getItem("token"),
-			},
-			body: JSON.stringify({
-				followId: userid,
-			}),
-		})
-			.then((res) => res.json())
-			.then((result) => {
-				// console.log(result);
-				dispatch({
-					type: "UPDATE",
-					payload: { following: result.following, followers: result.followers },
-				});
-				localStorage.setItem("user", JSON.stringify(result));
-				setProfile((preval) => {
-					return {
-						...preval,
-						user: {
-							...preval.user,
-							followers: [...preval.user.followers, result._id],
+	useEffect(() => {
+		if (image) {
+			const data = new FormData();
+			data.append("file", image);
+			data.append("upload_preset", "social-blog");
+			data.append("cloud_name", "dsseuwzzr");
+			fetch("https://api.cloudinary.com/v1_1/dsseuwzzr/image/upload", {
+				method: "post",
+				body: data,
+			})
+				.then((res) => res.json())
+				.then((data) => {
+					// console.log(data);
+					// setUrl(data.url);
+					fetch("/updatepic", {
+						method: "put",
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: localStorage.getItem("token"),
 						},
-					};
+						body: JSON.stringify({
+							pic: data.url,
+						}),
+					})
+						.then((res) => res.json())
+						.then((result) => {
+							localStorage.setItem(
+								"user",
+								JSON.stringify({ ...state, pic: result.pic }),
+							);
+							dispatch({ type: "UPDATEPIC", payload: result.pic });
+							toast.success("profile pic updated");
+						})
+						.catch((err) => {
+							toast.error("server error");
+						});
+				})
+				.catch((err) => {
+					console.log(err);
 				});
-				setHide(false);
-			});
-	};
-
-	// Unfollow
-	const unfollow = () => {
-		fetch("/unfollow", {
-			method: "put",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: localStorage.getItem("token"),
-			},
-			body: JSON.stringify({
-				unfollowId: userid,
-			}),
-		})
-			.then((res) => res.json())
-			.then((result) => {
-				// console.log(result);
-				dispatch({
-					type: "UPDATE",
-					payload: { following: result.following, followers: result.followers },
-				});
-				localStorage.setItem("user", JSON.stringify(result));
-				setProfile((preval) => {
-					const newfolwer = preval.user.followers.filter(
-						(item) => item !== result._id,
-					);
-					return {
-						...preval,
-						user: {
-							...preval.user,
-							followers: newfolwer,
-						},
-					};
-				});
-				setHide(false);
-			});
+		}
+	}, [image]);
+	const uploadPic = (file) => {
+		setImage(file);
 	};
 
 	return (
 		<React.Fragment>
 			<NavBar />
-			{userProfile ? (
-				<div className="parent">
-					<div className="profile">
-						<div className="img_Div">
+			<div className="parent">
+				<div className="profile">
+					<div className="img_Div">
+						<label htmlFor="file-input">
 							<img
 								className="image_dp"
-								src={userProfile?userProfile.user.pic:"Wait.."}
+								src={state ? state.pic : "loading"}
 								alt="user picture"
 							/>
-						</div>
-						<div>
-							<h4 className="Name_user">{userProfile.user.name}</h4>
-							<h5 className="Email_user">{userProfile.user.email}</h5>
-							<div className="friend_Section">
-								<h5 className="user_sect">{userProfile.posts.length} Posts</h5>
-								<h5 className="user_sect">
-									{userProfile.user.followers.length} Followers
-								</h5>
-								<h5 className="user_sect">
-									{userProfile.user.following.length} Following
-								</h5>
-							</div>
-							{show ? (
-								<Button
-									variant="contained"
-									color="secondary"
-									onClick={() => {
-										follow();
-									}}>
-									Follow
-								</Button>
-							) : (
-								<Button
-									variant="contained"
-									color="secondary"
-									onClick={() => {
-										unfollow();
-									}}>
-									Unfollow
-								</Button>
-							)}
-						</div>
+						</label>
+						<input
+							id="file-input"
+							type="file"
+							onChange={(e) => setImage(e.target.files[0])}
+						/>
 					</div>
-					<div className="Posts">
-						{userProfile.posts.map((item) => {
-							return (
-								<img
-									className="items "
-									src={item.photo}
-									alt={item.title}
-									key={item._id}
-								/>
-							);
-						})}
+
+					<div className="user_Details">
+						<h4 className="Name_user">{name}</h4>
+						<h5 className="Email_user">{email}</h5>
+						<div className="friend_Section">
+							<h5 className="user_sect">{pics.length} Posts</h5>
+							{/* <h5 className="user_sect">{followers} Followers</h5> */}
+							{/* <h5 className="user_sect">{followers} following</h5> */}
+							<h5 className="user_sect">
+								{state ? state.followers?.length : 0} Followers
+							</h5>
+							<h5 className="user_sect">
+								{state ? state.following?.length : 0} Following
+							</h5>
+						</div>
 					</div>
 				</div>
-			) : (
-				<div className="loader"></div>
-			)}
+				<div className="Posts">
+					{pics.map((item) => {
+						return (
+							<img
+								className="items"
+								src={item.photo}
+								alt={item.title}
+								key={item._id}
+							/>
+						);
+					})}
+				</div>
+			</div>
 		</React.Fragment>
 	);
 }
 
-export default Userprofile;
+export default Profile;
