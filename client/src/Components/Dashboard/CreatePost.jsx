@@ -17,16 +17,14 @@ function CreatePost() {
 	const postDetails = () => {
 		const data = new FormData();
 		data.append("file", image);
-		data.append("upload_preset", "Social");
+		data.append("upload_preset", "social-blog");
 		data.append("cloud_name", "dsseuwzzr");
-
 		axios({
 			method: "post",
 			url: "https://api.cloudinary.com/v1_1/dsseuwzzr/image/upload",
 			data: data,
 			onUploadProgress: (p) => {
 				const progress = p.loaded / p.total;
-
 				// check if we already displayed a toast
 				if (toastId.current === null) {
 					toastId.current = toast.info("Upload in Progress", {
