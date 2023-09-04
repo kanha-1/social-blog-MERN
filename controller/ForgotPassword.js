@@ -19,7 +19,6 @@ module.exports = {
 					process.env.SECRET_KEY,
 					{ expiresIn: "2m" },
 				);
-
 				transporter
 					.sendMail({
 						to: user.email,
@@ -28,7 +27,7 @@ module.exports = {
 						html: `<div>
                         <h1>Reset password</h1>
                         <p>Please click below link for reset password. This link will got expire within 20 minutes</p>
-                        <a href="${process.env.CLIENT_URL}/${token}/${user.email}">Click Here </a>
+                        <a href="${process.env.CLIENT_URL_DEV}/${token}/${user.email}">Click Here </a>
                     </div>`,
 					})
 					.then((success) => {
