@@ -6,10 +6,10 @@ import { toast } from "react-toastify";
 
 function Profile() {
 	const user = JSON.parse(localStorage.getItem("user"));
-	const name = user?.name;
-	const email = user?.email;
-	const followers = user?.followers;
-	const following = user?.following;
+	const name = user.name;
+	const email = user.email;
+	const followers = user.followers;
+	const following = user.following;
 	const [image, setImage] = useState("");
 	const [pics, setpics] = useState([]);
 	const { state, dispatch } = useContext(UserContext);
