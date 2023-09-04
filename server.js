@@ -36,12 +36,19 @@ app.use(usersRoute);
 app.use(conversation);
 app.use(messages);
 
+console.log(process.env.NODE_ENV, "process.env.NODE_ENV")
 // heroku deploy
+const __dirname1 = path.resolve()
 if (process.env.NODE_ENV == "production") {
-	app.use(express.static("client/build"));
+	app.use(express.static(path.join(__dirname1, "client/build")));
 	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+		res.sendFile(path.resolve(__dirname1, "client", "build", "index.html"));
 	});
+} else {
+	app.get('/', (req, res) => {
+		console.log(process.env.NODE_ENV, "process.env.NODE_ENV")
+		res.send('app is running on development')
+	})
 }
 //Server
 const server = app.listen(PORT, function () {
